@@ -10,3 +10,9 @@ resource "aws_ebs_volume" "ebs_extend" {
   availability_zone = "ap-southeast-1a"
   size = 10
 }
+
+resource "aws_volume_attachment" "ebs_attach" {
+  device_name = "/dev/sdh"
+  volume_id = aws_ebs_volume.ebs_extend.id
+  instance_id = aws_instance.vm-user1.id
+}
